@@ -1,0 +1,1272 @@
+/*@import url("https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300;400;700&family=Monoton&display=swap"); */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+    outline: none;
+    font-family: 'Bellota Text', cursive;
+    font-weight: 400;
+
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 40px;
+    font-size: 1.2rem;
+
+    h1 {
+        color: #000000;
+    }
+
+    /* --- STYLOWANIE NASZEGO LINKU --- */
+
+    .link-animowany {
+        /* --- Podstawowe style linku --- */
+        color: #fefefe;
+        /* Kolor tekstu linku */
+        text-decoration: none;
+        /* MUSIMY usunąć domyślne podkreślenie przeglądarki! */
+
+        /* --- Przygotowanie do animacji --- */
+        display: inline-block;
+        /* Pozwala na prawidłowe pozycjonowanie linii pod tekstem */
+        position: relative;
+        /* To jest kluczowe! Nasza linia będzie pozycjonowana względem tego elementu */
+        padding-bottom: 3px;
+        /* Daje trochę przestrzeni między tekstem a linią */
+    }
+
+    /* Tworzymy "wirtualny" element, który będzie naszą linią */
+    .link-animowany::after {
+        content: '';
+        /* Pseudo-element musi mieć ten atrybut, nawet jeśli jest pusty */
+        position: absolute;
+        /* Pozycjonujemy linię względem linku (który ma position: relative) */
+        width: 0;
+        /* STAN POCZĄTKOWY: linia jest niewidoczna, bo ma zerową szerokość */
+        height: 2px;
+        /* Grubość naszej linii */
+        bottom: 0;
+        /* Umieszczamy linię na samym dole elementu */
+        left: 0;
+        /* Zaczynamy rysowanie od lewej strony */
+        h1 rgba(255, 255, 255, 0.744);
+        ;
+        /* Kolor naszej linii */
+
+        /* Animacja! Płynne przejście właściwości "width" w czasie 0.3 sekundy */
+        transition: width 0.3s ease-in-out;
+    }
+
+    /* Definiujemy, co się ma stać po najechaniu myszką na link */
+    .link-animowany:hover::after {
+        width: 100%;
+        /* STAN KOŃCOWY: linia rozszerza się do pełnej szerokości linku */
+    }
+
+    /* Opcjonalnie: możemy też lekko zmienić kolor tekstu po najechaniu */
+    .link-animowany:hover {
+        color: rgba(255, 255, 255, 0.744);
+        transition: color 0.3s ease-in-out;
+    }
+
+
+    /* style.css */
+    :root {
+        --locked-color: #d32f2f;
+        /* Red */
+        --unlocked-color: #388e3c;
+        /* Green */
+        --button-bg: #f5f5f5;
+        --button-hover-bg: #e0e0e0;
+        --text-color: #ffffff;
+        --border-color: #ccc;
+        --transition-speed: 0.3s;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f2f5;
+        gap: 20px;
+    }
+
+    .lock-btn {
+        /* Layout */
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 24px;
+
+        /* Appearance */
+        border: 1px solid var(--border-color);
+        border-radius: 50px;
+        /* Pill shape */
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        background-color: var(--button-bg);
+        color: var(--text-color);
+
+        /* Animation */
+        transition: background-color var(--transition-speed) ease,
+            color var(--transition-speed) ease,
+            transform 0.1s ease;
+
+        /* Remove default button outline for custom focus style */
+        outline: none;
+    }
+
+    /* Hover and Focus States for better UX */
+    .lock-btn:hover {
+        background-color: var(--button-hover-bg);
+    }
+
+    .lock-btn:focus-visible {
+        box-shadow: 0 0 0 3px rgb(33, 142, 23);
+    }
+
+    /* Press-down effect */
+    .lock-btn:active {
+        transform: scale(0.97);
+    }
+
+    /* Icon Styling */
+    .lock-icon {
+        width: 1.2em;
+        height: 1.2em;
+        transition: fill var(--transition-speed) ease;
+    }
+
+
+    /* --- STATE-SPECIFIC STYLES --- */
+
+    /* Style for LOCKED State */
+    .lock-btn[aria-pressed='true'] {
+        color: var(--locked-color);
+        border-color: var(--locked-color);
+    }
+
+    .lock-btn[aria-pressed='true'] .lock-icon {
+        fill: var(--locked-color);
+    }
+
+    .lock-btn[aria-pressed='true'] .lock-icon-unlocked {
+        display: none;
+        /* Hide the unlocked icon */
+    }
+
+    .lock-btn[aria-pressed='true'] .lock-icon-locked {
+        display: block;
+        /* Show the locked icon */
+    }
+
+
+    /* Style for UNLOCKED State */
+    .lock-btn[aria-pressed='false'] {
+        color: var(--unlocked-color);
+        border-color: var(--unlocked-color);
+    }
+
+    .lock-btn[aria-pressed='false'] .lock-icon {
+        fill: var(--unlocked-color);
+    }
+
+    .lock-btn[aria-pressed='false'] .lock-icon-unlocked {
+        display: block;
+        /* Show the unlocked icon */
+    }
+
+    .lock-btn[aria-pressed='false'] .lock-icon-locked {
+        display: none;
+        /* Hide the locked icon */
+    }
+
+    h1 {
+        color: white;
+        font-size: 6vw;
+        letter-spacing: -20px;
+        font-family: arial, sans-serif;
+        /* transform: translate(-50%, -50%);
+    top: 40%;
+    left: 50%; */
+
+    }
+
+    p {
+        color: rgb(255, 255, 255);
+
+
+    }
+
+    html {
+        font-size: 62.5%;
+        scroll-behavior: smooth;
+        background-color: #ffffff;
+    }
+
+    .container {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .section-heading {
+        font-size: 10rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #999;
+        text-align: center;
+        opacity: 0.1;
+        text-shadow: 2rem 2rem 4rem #aaa;
+
+    }
+
+
+
+    .section-1 {
+        width: 100%;
+        height: 100vh;
+        background-color: #fff;
+        position: relative;
+    }
+
+    .floating-bg {
+        width: 150vw;
+        height: 150vw;
+        background: #05c108;
+        background-color: #05c108;
+        top: -125vw;
+        left: calc(50% - 75vw);
+        border-radius: 45%;
+        animation: rotate 30s infinite;
+    }
+
+    .floating-bg::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: rgb(50, 231, 255);
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 40%;
+        animation: rotate 30s infinite;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .navbar {
+        position: relative;
+        z-index: 20;
+        top: 4rem;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .navbar-link {
+        font-size: 2.2rem;
+        font-weight: 700;
+        letter-spacing: 0.2rem;
+        color: #fff;
+        width: 1.5rem;
+        word-wrap: break-word;
+        text-align: center;
+        transition: all 0.5s;
+    }
+
+    .navbar-link:hover {
+        width: 15rem;
+        background-color: rgba(255, 255, 255, 0.2);
+        transition: all 2.5s;
+    }
+
+    .section-1-heading {
+        font-size: 8rem;
+        font-family: "Monoton", cursive;
+        position: absolute;
+        top: 18vw;
+        left: 50%;
+        transform: translateX(-50%);
+        text-shadow: 0.3rem 0.3rem 0.3rem #888;
+        color: #fff;
+        background: #ffff;
+        width: 85rem;
+        text-align: center;
+        padding: 0.8rem 1.6rem;
+        border-radius: 0.8rem;
+        opacity: 0.9;
+    }
+
+    .logo {
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .logo i {
+        font-size: 15rem;
+        color: rgba(50, 231, 255, 0.8);
+        text-shadow: 0.1rem 0.1rem 0.2rem #ddd, -0.1rem -0.1rem 0.2rem #ddd;
+    }
+
+    /* End of Section 1 */
+
+    /* Section 2 */
+    .section-2 {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .customers-wrapper {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 70%;
+    }
+
+    .customer {
+        width: 35rem;
+        height: 50rem;
+        background-color: #eee;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 0.5rem;
+        padding: 2rem;
+        box-shadow: 1rem 1rem 2rem #ddd, -1rem -1rem 2rem #eee;
+        transition: box-shadow 0.5s;
+    }
+
+    .customer:hover {
+        box-shadow: 2rem 2rem 3rem #ddd, -2rem -2rem 3rem #eee;
+    }
+
+    .customer:first-child {
+        align-self: flex-end;
+    }
+
+    .customer:last-child {
+        align-self: flex-start;
+    }
+
+    .fa-quote-left {
+        font-size: 4rem;
+        color: #f08e0f;
+    }
+
+    .customer-text {
+        font-size: 1.8rem;
+        margin: 2.5rem 0;
+        text-align: justify;
+    }
+
+    .customer-text::first-letter {
+        margin-left: 1rem;
+    }
+
+    .customer-rating i {
+        font-size: 2rem;
+        color: #f08e0f;
+    }
+
+    .customer-img {
+        width: 10rem;
+        height: 10rem;
+        object-fit: cover;
+        margin: 2rem 0;
+        border-radius: 50%;
+    }
+
+    .customer-name {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    /* End of Section 2 */
+
+    /* Section 3 */
+    .section-3 {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 5rem 0;
+    }
+
+    .team-wrapper {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 70%;
+    }
+
+    .team-member {
+        width: 35rem;
+        background-color: #fffeee;
+        padding: 1rem 1rem 2rem 1rem;
+        box-shadow: 1rem 1rem 2rem #ddd, -1rem -1rem 2rem #eee;
+        position: relative;
+        opacity: 0.7;
+        transition: opacity 0.5s;
+    }
+
+    .team-member:hover {
+        opacity: 1;
+    }
+
+    .team-member:first-child {
+        align-self: flex-start;
+    }
+
+    .team-member:last-child {
+        align-self: flex-end;
+    }
+
+    .team-member-img {
+        width: 100%;
+        border-radius: 0.5rem;
+    }
+
+    .team-member-name {
+        font-size: 2.3rem;
+        font-weight: 700;
+        color: #796717;
+        margin-top: 2rem;
+    }
+
+    .team-member-name span {
+        font-size: 1.7rem;
+    }
+
+    .team-member-skills {
+        display: flex;
+        justify-content: space-between;
+        margin: 1rem 0 2rem 0;
+    }
+
+    .team-member-skills li {
+        font-size: 1.5rem;
+        color: #505050;
+    }
+
+    .projects-btn {
+        background-color: #fab34a;
+        color: #fff;
+        padding: 0.5rem 1.5rem;
+        border-radius: 5rem;
+        font-size: 1.5rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .story-btn {
+        width: 4rem;
+        height: 4rem;
+        background-color: #222;
+        position: absolute;
+        top: -1rem;
+        right: -1rem;
+        border-radius: 5rem;
+        display: flex;
+        align-items: center;
+        padding: 0.5rem;
+        cursor: pointer;
+        z-index: 50;
+        transition: transform 0.5s;
+    }
+
+    .change.story-btn {
+        transform: rotate(405deg);
+    }
+
+    .story-btn-line {
+        width: 100%;
+        height: 0.1rem;
+        background-color: #fff;
+    }
+
+    .story {
+        width: 100%;
+        height: 100%;
+        background: rgba(253, 69, 69, 0.9);
+        position: absolute;
+        background-color: rgba(253, 69, 69, 0.9);
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        transform: scale(0);
+        transform-origin: top right;
+        border-radius: 50rem 0 50rem 50rem;
+        transition: all 0.5s;
+    }
+
+    .change.story {
+        transform: scale(1);
+        border-radius: 0;
+    }
+
+    .story-heading {
+        font-size: 4rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 2rem;
+    }
+
+    .story-paragraph {
+        font-size: 1.8rem;
+        color: #eee;
+        text-align: justify;
+        letter-spacing: 0.1rem;
+        text-indent: 2rem;
+    }
+
+    /* End of Section 3 */
+
+    /* Section 4 */
+    .section-4 {
+        width: 100%;
+        height: 130vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .form-container {
+        width: 80%;
+        height: 40%;
+        background-color: #e5e9ff;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        box-shadow: 0.3rem 0.3rem 0.4rem #ccc, -0.1rem -0.1rem 0.4rem #ccc;
+        border-radius: 0.5rem;
+        perspective: 100rem;
+    }
+
+    .form-img {
+        width: 55rem;
+        background: rgba(50, 231, 255, 0.8);
+        background-color: rgba(50, 231, 255, 0.8);
+        opacity: 0.8;
+        box-shadow: -3rem 3rem 4rem #aaa;
+        border-radius: 0.5rem;
+        transform: rotateY(20deg);
+        transition: all 0.5s;
+    }
+
+    .form-img:hover {
+        transform: translateY(-2rem) rotateY(20deg);
+        box-shadow: -5rem 5rem 7rem #aaa;
+    }
+
+    .contact-form {
+        width: 45rem;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        padding: 3rem;
+        border-radius: 0.5rem;
+        box-shadow: 3rem 3rem 4rem #aaa;
+        transform: rotateY(-20deg);
+        transition: all 0.5s;
+    }
+
+    .contact-form:hover {
+        transform: translateY(-2rem) rotateY(-20deg);
+        box-shadow: 5rem 5rem 7rem #aaa;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        margin: 1rem;
+        padding: 1rem;
+        font-size: 1.3rem;
+        letter-spacing: 0.1rem;
+        border: none;
+        border-radius: 2rem;
+        box-shadow: inset 0.1rem 0.1rem 0.2rem #ddd, inset -0.1rem -0.1rem 0.2rem #ddd;
+    }
+
+    .contact-form textarea {
+        max-height: 15rem;
+        min-height: 10rem;
+        max-width: 100%;
+        min-width: 70%;
+    }
+
+    .contact-form input[type="submit"] {
+        background-color: rgba(50, 231, 255, 0.8);
+        color: #fff;
+        font-weight: bolder;
+        letter-spacing: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.5s;
+    }
+
+    .contact-form input[type="submit"]:hover {
+        background-color: #0077ff;
+        /* color changed */
+    }
+
+    .copyright {
+        font-size: 2rem;
+        letter-spacing: 0.2rem;
+        color: #444;
+        margin-top: 5rem;
+    }
+
+    /* End of Section 4 */
+
+    .scroll-up-btn {
+        width: 5rem;
+        height: 5rem;
+        background-color: #0077ff;
+        position: fixed;
+        bottom: 5rem;
+        right: 5rem;
+        border-radius: 50%;
+        font-size: 1.6rem;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.5s;
+    }
+
+    .scroll-up-btn:hover {
+        background-color: #32e7ff;
+    }
+
+    /* Responsive */
+    @media (max-width: 1400px) {
+        .floating-bg {
+            top: -120vw;
+        }
+
+        .section-1-heading {
+            font-size: 6rem;
+            top: 25vw;
+            width: 70rem;
+        }
+
+        .navbar-link {
+            font-size: 2rem;
+        }
+
+        .logo {
+            top: 75%;
+        }
+
+        .logo i {
+            font-size: 10rem;
+        }
+
+        .section-heading {
+            font-size: 8rem;
+            margin-bottom: 10rem;
+        }
+
+        .section-2 {
+            height: auto;
+        }
+
+        .customers-wrapper {
+            flex-wrap: wrap;
+        }
+
+        .customer {
+            margin: 5rem 10rem;
+        }
+
+        .section-3 {
+            height: auto;
+        }
+
+        .team-wrapper {
+            flex-wrap: wrap;
+        }
+
+        .team-member {
+            margin: 5rem 10rem;
+        }
+
+        .form-container {
+            height: 60%;
+        }
+
+        .form-img {
+            display: none;
+        }
+
+        .contact-form {
+            transform: translateY(0);
+        }
+
+        .contact-form:hover {
+            transform: translateY(-1rem);
+        }
+
+        .copyright {
+            margin: 5rem 0 4rem 0;
+        }
+    }
+
+    @media (max-width: 1150px) {
+        .floating-bg {
+            top: -110vw;
+        }
+
+        .section-1-heading {
+            font-size: 5rem;
+            top: 30vw;
+            width: 60rem;
+        }
+
+        .logo i {
+            font-size: 9rem;
+        }
+    }
+
+    @media (max-width: 950px) {
+        .floating-bg {
+            top: -100vw;
+        }
+
+        .section-1-heading {
+            top: 40vw;
+        }
+
+        .navbar {
+            justify-content: space-around;
+        }
+    }
+
+    @media (max-width: 750px) {
+        html {
+            font-size: 50%;
+        }
+
+        .floating-bg {
+            top: -90vw;
+        }
+
+        .section-1-heading {
+            top: 48vw;
+        }
+
+        .section-heading {
+            margin-bottom: 5rem;
+        }
+    }
+
+    @media (max-width: 550px) {
+        html {
+            font-size: 45%;
+        }
+
+        .floating-bg {
+            top: -70vw;
+        }
+
+        .section-1-heading {
+            top: 65vw;
+            width: 42rem;
+            font-size: 3.5rem;
+        }
+
+        .section-heading {
+            font-size: 6rem;
+        }
+
+        .customer {
+            margin: 5rem 0;
+        }
+
+        .team-member {
+            margin: 5rem 0;
+        }
+
+        .section-4 {
+            height: auto;
+        }
+
+        .form-container {
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        .contact-form {
+            box-shadow: 1rem 1rem 2rem #aaa;
+        }
+
+        .contact-form:hover {
+            box-shadow: 2rem 2rem 3rem #aaa;
+        }
+
+        .copyright {
+            font-size: 1.8rem;
+            margin: 5rem;
+            text-align: center;
+        }
+
+        .scroll-up-btn {
+            bottom: 2rem;
+            right: 2rem;
+        }
+    }
+
+    /* style.css */
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f2f5;
+        gap: 20px;
+    }
+
+    .link-button {
+        /* Wygląd */
+        display: inline-flex;
+        align-items: center;
+        background-color: #007bff;
+        /* Główny kolor niebieski */
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+
+        /* Usunięcie domyślnego stylu linku */
+        text-decoration: none;
+        cursor: pointer;
+
+        /* Animacje */
+        transition: background-color 0.3s ease, transform 0.1s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Efekt po najechaniu myszką */
+    .link-button:hover {
+        background-color: #0056b3;
+        /* Ciemniejszy odcień niebieskiego */
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Efekt w momencie kliknięcia */
+    .link-button:active {
+        transform: scale(0.98);
+        /* Lekkie zmniejszenie przycisku */
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Styl dla fokusu klawiatury (ważne dla dostępności) */
+    .link-button:focus-visible {
+        outline: 3px solid #99caff;
+        outline-offset: 2px;
+    }
+
+    /* Styl dla ikony wewnątrz przycisku */
+    .link-button .icon {
+        margin-left: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    /* Animacja ikony po najechaniu na przycisk */
+    .link-button:hover .icon {
+        transform: translateX(5px);
+    }
+
+    /* Podstawowe style */
+    body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* --- Układ warstwowy --- */
+
+    .main-container {
+        position: relative;
+        /* Niezbędne, aby pozycjonowanie absolutne działało wewnątrz */
+        width: 100vw;
+        /* 100% szerokości ekranu */
+        height: 100vh;
+        /* 100% wysokości ekranu */
+        overflow: hidden;
+        /* Ukrywa to, co wystaje poza ekran */
+    }
+
+    /* Twoja animacja jako tło */
+    .animated-background {
+        position: absolute;
+        /* Wyjęte z normalnego przepływu strony */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        /* Ta warstwa jest na spodzie */
+
+        /* Przykładowa animacja gradientu - możesz ją zmienić */
+        background: linear-gradient(-45deg, #007bff, #3f51b5, #2196f3, #03a9f4);
+        background-size: 400% 400%;
+        animation: gradient-flow 15s ease infinite;
+    }
+
+    @keyframes gradient-flow {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    /* Warstwa z przyciskami */
+    .content-layer {
+        position: relative;
+        /* Używamy relative, aby z-index działał poprawnie */
+        z-index: 2;
+        /* Ta warstwa jest na wierzchu */
+        width: 100%;
+        height: 100%;
+
+        /* Wyśrodkowanie przycisków za pomocą Flexbox */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        /* Style tekstu dla lepszej czytelności */
+        color: white;
+        text-align: center;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    .button-group {
+        display: flex;
+        gap: 20px;
+        /* Odstęp między przyciskami */
+        margin-top: 25px;
+    }
+
+    /* --- Style dla Twoich przycisków --- */
+
+    .link-button {
+        display: inline-flex;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.9);
+        /* Lekko przezroczysty biały */
+        color: #0056b3;
+        /* Ciemnoniebieski tekst */
+        padding: 14px 28px;
+        border-radius: 50px;
+        /* Kształt pigułki */
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        /* Płynna animacja wszystkiego */
+    }
+
+    /* Efekt po najechaniu myszką */
+    .link-button:hover {
+        transform: translateY(-3px);
+        /* Unosi przycisk */
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        background-color: white;
+        /* Pełna biel */
+    }
+
+    /* Efekt w momencie kliknięcia */
+    .link-button:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .link-button .icon {
+        margin-left: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .link-button:hover .icon {
+        transform: translateX(4px);
+        /* Przesunięcie strzałki */
+    }
+
+    /* --- 1. STYLE GLOBALNE (z Twojego kodu) --- */
+    @import url("https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300;400;700&family=Monoton&display=swap");
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        list-style-type: none;
+        outline: none;
+        font-family: 'Bellota Text', cursive;
+        font-weight: 400;
+
+    }
+
+    html {
+        font-size: 62.5%;
+        /* Umożliwia używanie jednostek 'rem' w intuicyjny sposób */
+        scroll-behavior: smooth;
+        background: #312d2d;
+    }
+
+    body {
+        /* Usunąłem display: flex, aby kontener główny mógł zająć cały ekran */
+        background: #000000;
+    }
+
+
+    /* --- 2. UKŁAD WARSTWOWY --- */
+    .main-container {
+        position: relative;
+        /* Kontekst dla pozycjonowania absolutnego wewnątrz */
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        /* Ukrywa to, co wystaje poza animację */
+    }
+
+    /* Warstwa z przyciskami (na wierzchu) */
+    .content-layer {
+        position: absolute;
+        /* Umożliwia nałożenie na inną warstwę */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        /* Wysoki z-index, aby była na wierzchu */
+
+        /* Wyśrodkowanie przycisków i tekstu */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        /* Style dla tekstu na wierzchu */
+        color: white;
+        text-align: center;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        gap: 20px;
+        /* Odstęp między nagłówkiem a przyciskami */
+    }
+
+    h1 {
+        font-family: Georgia, "Times New Roman", serif;
+        /* Jeśli nazwa ma spacje, umieść ją w cudzysłowie */
+    }
+
+    /* --- 3. STYLE TWOJEJ ANIMACJI TŁA --- */
+    .section-1 {
+        width: 100%;
+        height: 100vh;
+        background-color: hsl(0, 0%, 0%);
+        position: relative;
+        z-index: 1;
+        /* Ta warstwa jest na spodzie */
+    }
+
+    .floating-bg {
+        width: 150vw;
+        height: 150vw;
+        background: #0036b4ab;
+        background-color: #0036b4ab;
+        position: absolute;
+        top: -125vw;
+        left: calc(50% - 75vw);
+        border-radius: 45%;
+        animation: rotate 30s infinite;
+    }
+
+    .floating-bg::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 140, 255, 0.447);
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 40%;
+        animation: rotate 30s infinite;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+
+
+
+
+
+
+    .positioned-button {
+        display: inline-flex;
+        align-items: center;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 100px;
+        border: none;
+        font-size: 1.6rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+        /* Pozycjonowanie i animacje */
+        position: absolute;
+        transition: all 0.3s ease;
+        transform: translate(-50%, -50%);
+        /* Początkowe centrowanie */
+    }
+
+    .positioned-button:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        /* Animacja uniesienia - dodana do początkowego centrowania */
+        transform: translate(-50%, -50%) translateY(-3px);
+    }
+
+    .positioned-button:active {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        /* Animacja wciśnięcia */
+        transform: translate(-50%, -50%) scale(0.98);
+    }
+
+    .positioned-button .icon {
+        margin-left: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .positioned-button:hover .icon {
+        transform: translateX(5px);
+    }
+
+
+    /* --- 2. KLASY MODYFIKUJĄCE (TYLKO KOLOR I POZYCJA) --- */
+    /* Zauważ, jak mało kodu jest teraz potrzebne! */
+
+    /* Przycisk 1: Różowy, po lewej */
+
+
+
+
+    /* Wklej ten kod na końcu swojego pliku style.css */
+    /* Zastąp stary blok dla link-button-1, 2, 3 tym nowym. */
+
+    /* --- 1. WSPÓLNA KLASA BAZOWA (BEZ ZMIAN - JUŻ POWINIENEŚ JĄ MIEĆ) --- */
+    .positioned-button {
+        display: inline-flex;
+        align-items: center;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 100px;
+        border: none;
+        font-size: 1.6rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+        position: absolute;
+        transition: all 0.3s ease;
+        transform: translate(-50%, -50%);
+    }
+
+    .positioned-button:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        transform: translate(-50%, -50%) translateY(-3px);
+    }
+
+    .positioned-button:active {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transform: translate(-50%, -50%) scale(0.98);
+    }
+
+    .positioned-button .icon {
+        margin-left: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .positioned-button:hover .icon {
+        transform: translateX(5px);
+    }
+
+    /* ---------------------------------------------stylw poszczegołnych   pzisizków*/
+
+    .pink {
+        background-color: #0077ff;
+        top: 70%;
+        left: 30%;
+    }
+
+    .pink:hover {
+        background-color: #004ecc;
+    }
+
+    /* Przycisk 2: Niebieski, na środku */
+    .blue {
+        background: hsl(212, 100%, 50%);
+        top: 70%;
+        left: 50%;
+    }
+
+    .blue:hover {
+        background: #004ecc;
+    }
+
+    /* Przycisk 3: Fioletowy, po prawej */
+    .purple {
+        background: #0077ff;
+        top: 70%;
+        left: 70%;
+    }
+
+    .purple:hover {
+        background: #004ecc;
+    }

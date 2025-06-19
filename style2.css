@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #000000, #132c9c);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Add this to the end of your style.css file */
+
+#question-description {
+    font-size: 1rem;
+    /* 16px */
+    font-style: italic;
+    color: #555;
+    margin-top: -15px;
+    /* Pull it up closer to the question */
+    margin-bottom: 25px;
+    line-height: 1.6;
+    text-align: left;
+    /* Good for longer, multi-line text */
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+h1 {
+    color: #4a4a4a;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #5a5a5a;
+    margin-bottom: 25px;
+}
+
+#answer-area {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.answer-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease-in-out;
+}
+
+.answer-btn:hover:not([disabled]) {
+    background-color: #e0e0e0;
+    border-color: #667eea;
+}
+
+.answer-btn.selected {
+    background-color: #c8d3ff;
+    border-color: #667eea;
+    font-weight: 600;
+}
+
+/* Styles for correct/incorrect answers after submission */
+.answer-btn.correct {
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+}
+
+.answer-btn.incorrect {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+}
+
+.answer-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* Style for the open question input */
+#open-answer-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    /* Important for padding */
+}
+
+#open-answer-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #000000, #132c9c);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.feedback {
+    min-height: 24px;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.feedback.correct {
+    color: #28a745;
+}
+
+.feedback.incorrect {
+    color: #dc3545;
+}
+
+.hide {
+    display: none;
+}
+
+/* Add this to the end of your style.css file */
+/*
+#question-image {
+    max-width: 100%;
+    max-height: 180px;
+   
+    margin: 0 auto 20px auto;
+
+    display: block;
+    border-radius: 10px;
+    object-fit: contain;
+    
+} */
+
+/* Add this to the end of your style.css file */
+
+/*#question-sound {
+    width: 100%;
+    margin-bottom: 20px;
+}*/

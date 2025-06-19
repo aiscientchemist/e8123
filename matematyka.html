@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Quiz</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<style>
+    .a {
+        color: white;
+        top: 10%;
+        left: 10%;
+        transform: translate(-50%, 50%);
+
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>Zadania</h1>
+
+        <div id="quiz-container">
+            <img id="question-image" src="" alt="Question Image" class="hide">
+            <audio id="question-sound" class="hide" controls></audio>
+
+            <h2 id="question-text">Question goes here</h2>
+            <!-- NEW: Description placeholder -->
+            <p id="question-description" class="hide"></p>
+
+            <div id="answer-area">
+                <!-- Answers will be generated here -->
+            </div>
+            <div id="feedback" class="feedback"></div>
+            <div class="controls">
+                <button id="submit-btn" class="btn">Submit</button>
+                <button id="next-btn" class="btn hide">Next Question</button>
+            </div>
+        </div>
+
+        <div id="results-container" class="hide">
+            <h2>Quiz Complete!</h2>
+            <p>You scored <span id="score-text">0</span> out of <span id="total-questions-text">0</span>.</p>
+            <button id="restart-btn" class="btn">Restart Quiz</button>
+        </div>
+    </div>
+
+    <script src="5.js"></script>
+</body>
+
+</html>

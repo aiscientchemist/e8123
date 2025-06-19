@@ -1,0 +1,159 @@
+/* --- Style ogólne (pozostają takie same) --- */
+body {
+    background-color: #000000;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.quiz-container {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+}
+
+#question {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn {
+    background-color: #f1f1f1;
+    border: 2px solid #bdc3c7;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn:hover:not(:disabled) {
+    background-color: #e0e0e0;
+    border-color: #3498db;
+}
+
+.btn.correct {
+    background-color: #2ecc71;
+    color: white;
+    border-color: #27ae60;
+}
+
+.btn.incorrect {
+    background-color: #e74c3c;
+    color: white;
+    border-color: #c0392b;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.hidden {
+    display: none;
+}
+
+/* --- NOWE STYLE DLA PYTAŃ OTWARTYCH --- */
+#open-answer-container {
+    margin-top: 20px;
+    width: 100%;
+}
+
+#open-answer-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid #132835;
+    border-radius: 10px;
+    box-sizing: border-box;
+    /* Ważne, aby padding nie powiększał pola */
+    transition: border-color 0.2s;
+}
+
+#open-answer-input:focus {
+    outline: none;
+    border-color: #262626;
+}
+
+/* Style dla pola input po sprawdzeniu odpowiedzi */
+#open-answer-input.correct-input {
+    border-color: #2ecc71;
+    background-color: #f0fff4;
+}
+
+#open-answer-input.incorrect-input {
+    border-color: #e74c3c;
+    background-color: #fff2f1;
+}
+
+/* Tekst z poprawną odpowiedzią */
+#correct-answer-text {
+    margin-top: 10px;
+    color: #2ecc71;
+    font-weight: 600;
+}
+
+/* --- Przycisk akcji (Sprawdź/Następne) i Restart --- */
+#action-btn,
+#restart-btn {
+    background-color: #2d2d2d;
+    color: white;
+    border-radius: 10px;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    margin-top: 25px;
+    width: 50%;
+    transition: background-color 0.2s ease;
+    display: none;
+    /* Domyślnie ukryty */
+}
+
+#action-btn:hover,
+#restart-btn:hover {
+    background-color: #515151;
+}
+
+/* RWD (bez zmian) */
+@media (max-width: 768px) {
+    .btn-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quiz-container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    #question {
+        font-size: 1.2rem;
+    }
+}
