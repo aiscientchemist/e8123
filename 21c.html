@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Mieszany</title>
+    <link rel="stylesheet" href="x.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="quiz-container">
+        <h1>Quiz</h1>
+
+        <div id="quiz">
+            <h2 id="question">Treść pytania pojawi się tutaj</h2>
+
+            <!-- Kontener na odpowiedzi ZAMKNIĘTE (przyciski) -->
+            <div id="answer-buttons" class="btn-grid"></div>
+
+            <!-- Kontener na odpowiedzi OTWARTE (pole tekstowe) -->
+            <div id="open-answer-container" class="hidden">
+                <input type="text" id="open-answer-input" placeholder="Wpisz swoją odpowiedź...">
+                <p id="correct-answer-text" class="hidden"></p>
+            </div>
+
+            <button id="action-btn">Dalej</button>
+        </div>
+
+        <div id="results-container" class="results-container hidden">
+            <h2 id="score-text">Twój wynik</h2>
+            <button id="restart-btn">Spróbuj ponownie</button>
+        </div>
+    </div>
+
+    <script src="20x.js"></script>
+</body>
+
+</html>
